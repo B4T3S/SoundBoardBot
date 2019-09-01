@@ -129,22 +129,25 @@ class SoundBoardCog(Cog):
                     to_play = 'sounds/' + i
                     break
             if to_play:
-                    if to_play.endswith('.mp3'):
-                        length = MP3(to_play).info.length
-                    elif to_play.endswith('.ogg'):
-                        length = OggFileType(to_play).info.length
-                    else:
-                        length = WavPack(to_play).info.length
-                    client = await ctx.author.voice.channel.connect()
-                    src = FFmpegPCMAudio(to_play, options=ffmpeg_options)
-                    client.play(src)
-                    voice_clients[str(ctx.guild.id)] = client
-                    await after(ctx.guild.id, length)
-                    """
-                    await ctx.send(embed=Embed(
-                        title="Error",
-                        description="Couldn't join your channel! Maybe I'm missing permissions?\n" + str(e),
-                        color=Colour.red()"""
+                print("Should play now!")
+                if to_play.endswith('.mp3'):
+                    length = MP3(to_play).info.length
+                elif to_play.endswith('.ogg'):
+                    length = OggFileType(to_play).info.length
+                else:
+                    length = WavPack(to_play).info.length
+                print("Got the length!")
+                client = await ctx.author.voice.channel.connect()
+                src = FFmpegPCMAudio(to_play, options=ffmpeg_options)
+                client.play(src)
+                voice_clients[str(ctx.guild.id)] = client
+                print("PLAY NOW!")
+                await after(ctx.guild.id, length)
+                """
+                await ctx.send(embed=Embed(
+                    title="Error",
+                    description="Couldn't join your channel! Maybe I'm missing permissions?\n" + str(e),
+                    color=Colour.red()"""
             else:
                 await ctx.send(embed=Embed(
                     title="Error",
