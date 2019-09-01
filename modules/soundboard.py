@@ -138,6 +138,7 @@ class SoundBoardCog(Cog):
                     length = WavPack(to_play).info.length
                 print("Got the length!")
                 client = await ctx.author.voice.channel.connect()
+                print("Client created!")
                 src = FFmpegPCMAudio(to_play, options=ffmpeg_options)
                 client.play(src)
                 voice_clients[str(ctx.guild.id)] = client
