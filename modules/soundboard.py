@@ -144,7 +144,7 @@ class SoundBoardCog(Cog):
                 except Exception as e:
                     await ctx.send(embed=Embed(
                         title="Error",
-                        description="Couldn't join your channel! Maybe I'm missing permissions?\n" + e,
+                        description="Couldn't join your channel! Maybe I'm missing permissions?\n" + str(e),
                         color=Colour.red()
                     ))
             else:
