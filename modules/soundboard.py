@@ -141,10 +141,10 @@ class SoundBoardCog(Cog):
                     client.play(src)
                     voice_clients[str(ctx.guild.id)] = client
                     await after(ctx.guild.id, length)
-                except:
+                except Exception as e:
                     await ctx.send(embed=Embed(
                         title="Error",
-                        description="Couldn't join your channel! Maybe I'm missing permissions?",
+                        description="Couldn't join your channel! Maybe I'm missing permissions?\n" + e,
                         color=Colour.red()
                     ))
             else:
