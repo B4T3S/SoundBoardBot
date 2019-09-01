@@ -129,7 +129,6 @@ class SoundBoardCog(Cog):
                     to_play = 'sounds/' + i
                     break
             if to_play:
-                try:
                     if to_play.endswith('.mp3'):
                         length = MP3(to_play).info.length
                     elif to_play.endswith('.ogg'):
@@ -141,12 +140,11 @@ class SoundBoardCog(Cog):
                     client.play(src)
                     voice_clients[str(ctx.guild.id)] = client
                     await after(ctx.guild.id, length)
-                except Exception as e:
+                    """
                     await ctx.send(embed=Embed(
                         title="Error",
                         description="Couldn't join your channel! Maybe I'm missing permissions?\n" + str(e),
-                        color=Colour.red()
-                    ))
+                        color=Colour.red()"""
             else:
                 await ctx.send(embed=Embed(
                     title="Error",
