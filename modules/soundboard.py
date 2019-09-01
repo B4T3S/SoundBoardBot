@@ -137,7 +137,10 @@ class SoundBoardCog(Cog):
                 else:
                     length = WavPack(to_play).info.length
                 print("Got the length!")
-                client = await ctx.author.voice.channel.connect()
+                try:
+                    client = await ctx.author.voice.channel.connect()
+                except Exception as e:
+                    print("IT DID NOT WORK!" + str(e))
                 print("Client created!")
                 src = FFmpegPCMAudio(to_play, options=ffmpeg_options)
                 client.play(src)
